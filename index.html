@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/display.css">
+    <title>Desarrollando con Vue</title>
+</head>
+<body>
+    <div id="app" class="product">
+        <div class="product-image">
+            <img v-bind:src="image" v-bind:alt="description">
+        </div>
+
+        <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inventario > 10">Con stock</p>
+            <p v-else-if="inventario <= 10 && inventario > 0"> Por agotarse</p>
+            <p v-else>Sin stock</p>
+        </div>
+        
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js"></script>
+</body>
+</html>
