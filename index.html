@@ -8,53 +8,10 @@
 </head>
 <body>
     <div id="app" class="product">
-        <div class="product-image">
-            <img v-bind:src="image" v-bind:alt="description">
+        <div class="cart">
+            <p>Car({{cart.length}})</p>
         </div>
-
-        <div class="product-info">
-            <h1>{{ product }}</h1>
-            <p v-if="cart <= 0">Con stock</p>
-            <p v-else-if="cart <= 10"
-                > Por agotarse</p>
-            <p v-else>Sin stock</p>
-            <span v-if="onSale">En Venta</span>
-
-            <ul>
-                <li v-for="detail in details"> {{ detail }}</li>
-            </ul>
-
-            <ul>
-                <li v-for="feature in features"> {{ feature }} </li>
-            </ul>
-
-            <div v-for="variant in variants" 
-            :key="variant.variantId"
-            class="color-box"
-            :style="{ backgroundColor: variant.variantColor}"
-            @mouseover="updateProduct(variant.variantImage)"
-            >    
-            </div>
-
-            <!-- Cambiar de imagen cuando se pase el mouse sobre la palabra del color -->
-            <!-- <div v-for="variant in variants" 
-            :key="variant.variantId">
-                <p @mouseover="updateProduct(variant.variantImage)"> {{ variant.variantColor }} </p>
-            </div> -->
-
-
-            <!-- incrementa la variable cart y se visualiza en el apartado de la clase cart -->
-            <!-- <button v-on:click="cart += 1">Agregar al carro</button> -->
-            <button v-if="cart <= stock" v-on:click="addToCart" 
-                :disable="!onSale"
-                :class="{ disabledButton: !onSale }" >add to Cart</button>
-            <button v-if="cart > 0" v-on:click="deltoCart">del to Cart</button>
-            <div class="cart">
-                <p>Car({{cart}})</p>
-            </div>
-        </div>
-        
-        
+        <product :premium="premium" @add-to-cart="updateCart"></product>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="vue.js"></script>
